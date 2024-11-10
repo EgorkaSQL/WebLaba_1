@@ -3,4 +3,4 @@ FROM openjdk:17-jdk-alpine
 WORKDIR /app
 COPY ./Webb.jar /app/my-app.jar
 EXPOSE 8080
-CMD ["java", "-jar", "my-app.jar"]
+CMD ["java", "-DFCGI_PORT=8080"  , "-jar", "my-app.jar"]

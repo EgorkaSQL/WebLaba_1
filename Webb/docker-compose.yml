@@ -1,3 +1,6 @@
+networks:
+  itmo:
+
 
 services:
   backend:
@@ -6,9 +9,13 @@ services:
       dockerfile: Dockerfile-backend
     ports:
       - "8080:8080"
+    networks:
+      - itmo
   frontend:
     build:
       context: ./frontend
       dockerfile: Dockerfile-frontend
     ports:
       - "80:80"
+    networks:
+      - itmo

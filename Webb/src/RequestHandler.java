@@ -8,14 +8,22 @@ import java.io.StringReader;
 import java.nio.ByteBuffer;
 import java.nio.charset.StandardCharsets;
 
-public class RequestHandler {
+public class RequestHandler
+{
     private final FCGIInterface fcgi;
 
-    public RequestHandler(FCGIInterface fcgi) {
+    public RequestHandler(FCGIInterface fcgi)
+    {
         this.fcgi = fcgi;
     }
 
-    public Dot readRequest() throws IOException {
+    public Dot readRequest() throws IOException
+    {
+        String requestMethod = fcgi.request.params.getProperty("REQUEST_METHOD");
+        if (!"POST".equals(requestMethod))
+        {
+            throw new RuntimeException("Invalid request method: " + requestMethod);
+        }
         fcgi.request.inStream.fill();
         int contentLength = fcgi.request.inStream.available();
         ByteBuffer buffer = ByteBuffer.allocate(contentLength);
@@ -26,15 +34,18 @@ public class RequestHandler {
         String requestBody = new String(requestBodyRaw, StandardCharsets.UTF_8);
 
         JsonObject json;
-        try (JsonReader reader = Json.createReader(new StringReader(requestBody))) {
+        try (JsonReader reader = Json.createReader(new StringReader(requestBody)))
+        {
             json = reader.readObject();
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             System.err.println("JSON parsing error: " + e.getMessage());
-            System.out.println("JSON parsing error");
             return null;
         }
 
-        if (!json.containsKey("x") || !json.containsKey("y") || !json.containsKey("r")) {
+        if (!json.containsKey("x") || !json.containsKey("y") || !json.containsKey("r"))
+        {
             System.out.println("Missing parameters");
             return null;
         }
@@ -46,6 +57,10 @@ public class RequestHandler {
         double x = xNumber.doubleValue();
         double y = yNumber.doubleValue();
         double r = rNumber.doubleValue();
+
+        if (x < -3 || x > 5 || y < -r / 2 || y > r) {
+            throw new IllegalArgumentException("Неверные данные X или Y");
+        }
 
         return new Dot(x, y, r);
     }

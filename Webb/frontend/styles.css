@@ -4,6 +4,9 @@ body {
     padding: 0;
     background-color: #220737;
 }
+header p {
+    font-size: 1.2em;
+}
 header {
     background-color: #3399ff;
     color: white;
@@ -26,6 +29,9 @@ header {
 .form-container input[type="number"] {
     max-width: 50%;
 }
+.form-field:last-child {
+    margin-bottom: 0;
+}
 .form-field {
     margin-bottom: 25px;
 }
@@ -37,6 +43,7 @@ input, select {
     width: 100%;
     padding: 8px;
     box-sizing: border-box;
+    font-family: inherit;
 }
 input.error, select.error {
     border-bottom: 1px solid red;
@@ -68,4 +75,16 @@ input.error, select.error {
 canvas {
     background-color: white;
     border: 1px solid #ccc;
+}
+button {
+    font-size: 1em;
+    color: white;
+    background-color: #473a95;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #5b4bb7;
 }

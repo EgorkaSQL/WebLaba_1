@@ -22,7 +22,7 @@ public class RequestHandler
         String requestMethod = fcgi.request.params.getProperty("REQUEST_METHOD");
         if (!"POST".equals(requestMethod))
         {
-            throw new RuntimeException("Invalid request method: " + requestMethod);
+            throw new RuntimeException("Неверный метод запроса: " + requestMethod);
         }
         fcgi.request.inStream.fill();
         int contentLength = fcgi.request.inStream.available();
@@ -40,13 +40,13 @@ public class RequestHandler
         }
         catch (Exception e)
         {
-            System.err.println("JSON parsing error: " + e.getMessage());
+            System.err.println("Ошибка парсинга JSON: " + e.getMessage());
             return null;
         }
 
         if (!json.containsKey("x") || !json.containsKey("y") || !json.containsKey("r"))
         {
-            System.out.println("Missing parameters");
+            System.out.println("Остутсвуют парметры");
             return null;
         }
 
@@ -58,8 +58,12 @@ public class RequestHandler
         double y = yNumber.doubleValue();
         double r = rNumber.doubleValue();
 
-        if (x < -3 || x > 5 || y < -r / 2 || y > r) {
-            throw new IllegalArgumentException("Неверные данные X или Y");
+        if (x < -3 || x > 5) {
+            throw new IllegalArgumentException("Неверные данные X");
+        }
+        if (y < -3 || y > 5)
+        {
+            throw new IllegalArgumentException("Неверные данные Y");
         }
 
         return new Dot(x, y, r);

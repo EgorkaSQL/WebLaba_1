@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@400;700&family=Caveat:wght@400..700&family=Doto:wght@100..900&family=Rubik+Bubbles&family=Russo+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <title>Координатная плоскость</title>
+</head>
+<body>
+<header>
+    <p>Студент: Кондилеев Егор Юрьевич | Группа: P3210 | Вариант: 488779</p>
+</header>
+
+<div class="container">
+    <div class="content-wrapper">
+        <div class="form-container">
+            <div id="coordinates-form">
+                <div class="form-field">
+                    <label for="radius">Введите значение (R):</label>
+                    <select id="radius" name="radius">
+                        <option value="1">1</option>
+                        <option value="1.5">1.5</option>
+                        <option value="2">2</option>
+                        <option value="2.5">2.5</option>
+                        <option value="3">3</option>
+                    </select>
+                </div>
+                <div class="form-field">
+                    <label for="x-coord">Введите X координату (-3 ... 5):</label>
+                    <input type="number" id="x-coord" name="x-coord" min="-3" max="5" required>
+                </div>
+                <div class="form-field">
+                    <label for="y-coord">Введите Y координату (-3 ... 5):</label>
+                    <input type="number" id="y-coord" name="y-coord" min="-3" max="5" step="0.1" required>
+                </div>
+                <button id="submit-button">Отправить</button>
+            </div>
+            <table class="result-table" id="results">
+                <thead>
+                <tr>
+                    <th>R</th>
+                    <th>X</th>
+                    <th>Y</th>
+                    <th>Ответ</th>
+                    <th>Текущее время</th>
+                    <th>Время работы скрипта</th>
+                </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+        <div class="canvas-container">
+            <canvas id="coordinate-plane" width="400" height="400"></canvas>
+        </div>
+    </div>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

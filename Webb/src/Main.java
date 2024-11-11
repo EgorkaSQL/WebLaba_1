@@ -20,7 +20,7 @@ public class Main
             {
                 if (fcgi.request == null)
                 {
-                    System.err.println("request - null!");
+                    System.err.println("Запрос - null");
                     continue;
                 }
 
@@ -33,7 +33,7 @@ public class Main
             }
             catch (Exception e)
             {
-                System.err.println("Exception occurred: " + e.getMessage());
+                System.err.println("Exception: " + e.getMessage());
                 responseSender.sendErrorResponse("Error processing request");
             }
         }
@@ -42,7 +42,7 @@ public class Main
     private static String checkCoords(double x, double y, double r)
     {
         boolean isInCircle = x >= 0 && y >= 0 && (x * x + y * y <= (r / 2) * (r / 2));
-        boolean isInTriangle = x <= 0 && y >= 0 && y <= r && y <= -2 * x; // Исправить
+        boolean isInTriangle = x <= 0 && y >= 0 && x >= -r / 2 && y <= r && y <= (2 * x + r);
         boolean isInRectangle = x <= 0 && y <= 0 && x >= -r / 2 && y >= -r;
 
         boolean isInArea = isInCircle || isInTriangle || isInRectangle;

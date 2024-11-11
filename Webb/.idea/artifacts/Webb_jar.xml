@@ -4,11 +4,11 @@
     <root id="archive" name="Webb.jar">
       <element id="module-output" name="Webb" />
       <element id="extracted-dir" path="$USER_HOME$/Downloads/javax.json-1.1.4-module.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$USER_HOME$/Downloads/fastCGI.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$USER_HOME$/Downloads/javax.json-api-1.1.4.jar" path-in-jar="/" />
-      <element id="extracted-dir" path="$USER_HOME$/Downloads/gson-2.11.0.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$USER_HOME$/Downloads/fastcgi-lib.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/libs/jackson-all-1.8.2.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/gson-2.11.0.jar" path-in-jar="/" />
+      <element id="extracted-dir" path="$USER_HOME$/Downloads/fastCGI.jar" path-in-jar="/" />
     </root>
   </artifact>
 </component>

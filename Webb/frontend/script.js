@@ -4,7 +4,8 @@ const canvasSize = 400;
 const halfCanvasSize = canvasSize / 2;
 const pixelRatio = canvasSize / 6;
 
-function drawStaticAreas() {
+function drawStaticAreas()
+{
     ctx.fillStyle = 'rgba(0, 0, 255, 0.5)';
 
     // Четверть окружности
@@ -26,7 +27,8 @@ function drawStaticAreas() {
     ctx.fillRect(halfCanvasSize - 1 * pixelRatio, halfCanvasSize, 1 * pixelRatio, 2 * pixelRatio);
 }
 
-function drawAxes() {
+function drawAxes()
+{
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     ctx.beginPath();
     ctx.moveTo(0, halfCanvasSize);
@@ -54,7 +56,8 @@ function drawAxes() {
     ctx.stroke();
 }
 
-function plotPoint(x, y, r) {
+function plotPoint(x, y, r)
+{
     const scaledX = (x / r) * 2;
     const scaledY = (y / r) * 2;
     const canvasX = halfCanvasSize + scaledX * pixelRatio;
@@ -65,26 +68,38 @@ function plotPoint(x, y, r) {
     ctx.fill();
 }
 
-window.onload = function () {
+window.onload = function ()
+{
     drawAxes();
     drawStaticAreas();
 };
 
-document.getElementById('submit-button').addEventListener('click', function (event) {
+document.getElementById('submit-button').addEventListener('click', function (event)
+{
     event.preventDefault();
     const r = parseFloat(document.getElementById('radius').value);
-    const x = parseFloat(document.getElementById('x-coord').value);
     const y = parseFloat(document.getElementById('y-coord').value);
 
-    if (isNaN(r) || isNaN(x) || isNaN(y)) {
+    const xInput = document.querySelector('input[name="x-coord"]:checked');
+    if (!xInput)
+    {
+        alert("Выберите значение X!");
+        return;
+    }
+    const x = parseFloat(xInput.value);
+
+    if (isNaN(r) || isNaN(x) || isNaN(y))
+    {
         alert("Все значения должны быть числами!");
         return;
     }
-    if (x < -3 || x > 5) {
+    if (x < -3 || x > 5)
+    {
         alert("Значение X должно быть в диапазоне от -3 до 5.");
         return;
     }
-    if (y < -3 || y > 5) {
+    if (y < -3 || y > 5)
+    {
         alert("Значение Y должно быть в диапазоне от -3 до 5.");
         return;
     }
